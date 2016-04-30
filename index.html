@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>react</title>
+    <script src="../letu2/static/js/jquery.min.js"></script>
+    <link href="bootstrap.min.css" rel="stylesheet" type="text/css">
+    <script src="react.js"></script>
+    <script src="JSXTransformer.js"></script>
+    <style>
+        .divWrap{
+            width: 800px;
+            margin: 0 auto;
+        }
+        li {
+            /*float: left;*/
+            list-style: none;
+        }
+        .content:after{
+            clear: both;
+            display: block;
+            content: '.';
+            visibility: hidden;
+            height: 0;
+
+        }
+        .contentUl li{
+            width: 100px;
+            float: left;
+            overflow: hidden;
+            height: 60px;
+            line-height: 60px;
+        }
+        .content ul{
+            /*border: 1px #ff9515 solid;*/
+            margin: 0;
+        }
+        .contentUl:after{
+            clear: both;
+            display: block;
+            content: '.';
+            height: 0;
+            visibility: hidden;
+
+        }
+        .contentUl li{
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        .listHead li{
+            float: left;
+            height: 30px;
+            width: 100px;;
+            text-align: center;
+        }
+        .contentUl li:nth-child(6), .contentUl li:nth-child(4), .contentUl li:nth-child(5), .listHead li:nth-child(4),.listHead li:nth-child(5),.listHead li:nth-child(6){
+            width: 100px;
+        }
+        .contentUl li:nth-child(3),.listHead li:nth-child(3){
+            width: 250px;
+            display: table;
+            overflow: hidden;
+            line-height: 20px;
+        }
+
+        .listHead:after{
+            clear: both;
+            display: block;
+            content: '.';
+            height: 0;
+            visibility: hidden;
+        }
+        .contentUl li:nth-child(3) div{
+            display: table-cell;
+            vertical-align: middle;
+        }
+        .foot{
+            width: 120px;
+            position: fixed;
+            top: 10%;
+            right: 0%;
+            margin: 0;
+            padding: 0;
+        }
+        .inputFu{
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+<div id="container"></div>
+<script type="text/jsx">
+    var data={"status":2001,"total_score":306,"total_money":17350,"count":71,"endtime":"2016-2-28 21:38:21","historys":[{"id":130016,"fen":3,"officer":"","occur_date":"2015-10-02","occur_area":"217国","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130017,"fen":0,"officer":"","occur_date":"2015-09-29","occur_area":"乌苏市北","info":"机动车违反规定停放、临时","money":"50"},{"id":130018,"fen":3,"officer":"","occur_date":"2015-09-06","occur_area":"连霍高速","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130019,"fen":0,"officer":"","occur_date":"2015-09-03","occur_area":"连霍高速","info":"驾驶中型以上载客载货汽车","money":"0"},{"id":130020,"fen":3,"officer":"","occur_date":"2015-09-03","occur_area":"连霍高速","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130021,"fen":6,"officer":"","occur_date":"2015-08-11","occur_area":"省道11","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130023,"fen":6,"officer":"","occur_date":"2015-06-17","occur_area":"省道11","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130024,"fen":6,"officer":"","occur_date":"2015-05-13","occur_area":"北京路与","info":"驾驶中型以上载客载货汽车","money":"150"},{"id":130025,"fen":3,"officer":"","occur_date":"2015-05-09","occur_area":"交通东路","info":"机动车违反禁令标志指示的","money":"100"},{"id":130026,"fen":2,"officer":"","occur_date":"2015-05-09","occur_area":"人民东路","info":"机动车通过有灯控路口时，","money":"100"},{"id":130027,"fen":2,"officer":"","occur_date":"2015-05-06","occur_area":"梨香路","info":"机动车通过有灯控路口时，","money":"100"},{"id":130028,"fen":6,"officer":"","occur_date":"2015-04-28","occur_area":"省道20","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130030,"fen":2,"officer":"","occur_date":"2015-04-26","occur_area":"准噶尔路","info":"机动车通过有灯控路口时，","money":"100"},{"id":130031,"fen":0,"officer":"","occur_date":"2015-04-26","occur_area":"阿克苏路","info":"驾驶机动车在高速公路、城","money":"100"},{"id":130032,"fen":6,"officer":"","occur_date":"2015-04-24","occur_area":"北京路与","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130033,"fen":6,"officer":"","occur_date":"2015-04-22","occur_area":"北京路与","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130034,"fen":0,"officer":"","occur_date":"2015-04-22","occur_area":"北京路与","info":"驾驶机动车在高速公路、城","money":"100"},{"id":130035,"fen":6,"officer":"","occur_date":"2015-04-22","occur_area":"北京路与","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130036,"fen":6,"officer":"","occur_date":"2015-04-18","occur_area":"北京路与","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130037,"fen":3,"officer":"","occur_date":"2015-03-30","occur_area":"北京路与","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130038,"fen":0,"officer":"","occur_date":"2015-03-29","occur_area":"伊犁路与","info":"驾驶机动车在高速公路、城","money":"100"},{"id":130039,"fen":12,"officer":"","occur_date":"2015-03-29","occur_area":"迎宾大道","info":"驾驶中型以上载客载货汽车","money":"1900"},{"id":130040,"fen":0,"officer":"","occur_date":"2015-03-19","occur_area":"阿克苏路","info":"驾驶机动车在高速公路、城","money":"100"},{"id":130041,"fen":12,"officer":"","occur_date":"2015-03-19","occur_area":"北京路与","info":"驾驶中型以上载客载货汽车","money":"1900"},{"id":130042,"fen":6,"officer":"","occur_date":"2015-01-18","occur_area":"北京路与","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130043,"fen":6,"officer":"","occur_date":"2015-01-17","occur_area":"北京路与","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130044,"fen":3,"officer":"","occur_date":"2014-12-20","occur_area":"北京路与","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130045,"fen":6,"officer":"","occur_date":"2014-12-18","occur_area":"北京路与","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130046,"fen":6,"officer":"","occur_date":"2014-12-11","occur_area":"北京路与","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130047,"fen":6,"officer":"","occur_date":"2014-11-13","occur_area":"北京路与","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130048,"fen":0,"officer":"","occur_date":"2014-11-12","occur_area":"阿克苏路","info":"驾驶机动车在高速公路、城","money":"100"},{"id":130049,"fen":3,"officer":"","occur_date":"2014-11-12","occur_area":"北京路与","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130050,"fen":0,"officer":"","occur_date":"2014-11-12","occur_area":"阿克苏路","info":"驾驶机动车在高速公路、城","money":"100"},{"id":130051,"fen":3,"officer":"","occur_date":"2014-10-13","occur_area":"北京路与","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130052,"fen":6,"officer":"","occur_date":"2014-10-02","occur_area":"北京路与","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130053,"fen":6,"officer":"","occur_date":"2014-09-30","occur_area":"北京路与","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130054,"fen":3,"officer":"","occur_date":"2014-09-29","occur_area":"北京路与","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130055,"fen":12,"officer":"","occur_date":"2014-09-17","occur_area":"北京路与","info":"驾驶中型以上载客载货汽车","money":"1900"},{"id":130056,"fen":3,"officer":"","occur_date":"2014-09-17","occur_area":"奎屯－阿","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130057,"fen":6,"officer":"","occur_date":"2014-09-16","occur_area":"北京路与","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130058,"fen":3,"officer":"","occur_date":"2014-09-15","occur_area":"北京路与","info":"驾驶中型以上载货汽车在高","money":"200"},{"id":130059,"fen":6,"officer":"","occur_date":"2014-09-14","occur_area":"北京路与","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130060,"fen":6,"officer":"","occur_date":"2014-09-14","occur_area":"北京路与","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130061,"fen":3,"officer":"","occur_date":"2014-08-27","occur_area":"北京路与","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130062,"fen":3,"officer":"","occur_date":"2014-08-24","occur_area":"阿克苏路","info":"机动车违反禁止标线指示的","money":"100"},{"id":130063,"fen":6,"officer":"","occur_date":"2014-08-24","occur_area":"北京路与","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130064,"fen":6,"officer":"","occur_date":"2014-08-24","occur_area":"北京路与","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130065,"fen":6,"officer":"","occur_date":"2014-08-19","occur_area":"北京路与","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130066,"fen":6,"officer":"","occur_date":"2014-08-18","occur_area":"北京路与","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130067,"fen":6,"officer":"","occur_date":"2014-07-24","occur_area":"北京路与","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130068,"fen":3,"officer":"","occur_date":"2014-07-23","occur_area":"北京路与","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130069,"fen":6,"officer":"","occur_date":"2014-07-22","occur_area":"北京路与","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130070,"fen":6,"officer":"","occur_date":"2014-06-25","occur_area":"北京路与","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130072,"fen":6,"officer":"","occur_date":"2014-06-20","occur_area":"托里街与","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130073,"fen":6,"officer":"","occur_date":"2014-06-19","occur_area":"北京路与","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130074,"fen":6,"officer":"","occur_date":"2014-06-19","occur_area":"南环路与","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130075,"fen":3,"officer":"","occur_date":"2014-06-17","occur_area":"北京路与","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130076,"fen":3,"officer":"","occur_date":"2014-06-17","occur_area":"北京路与","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130077,"fen":6,"officer":"","occur_date":"2014-05-28","occur_area":"北京路与","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130079,"fen":6,"officer":"","occur_date":"2014-05-23","occur_area":"北京路与","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130080,"fen":3,"officer":"","occur_date":"2014-05-21","occur_area":"北京路与","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130081,"fen":3,"officer":"","occur_date":"2014-05-15","occur_area":"北京路与","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130082,"fen":6,"officer":"","occur_date":"2014-05-13","occur_area":"北京路与","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130083,"fen":0,"officer":"","occur_date":"2014-04-03","occur_area":"连霍高速","info":"驾驶中型以上载客载货汽车","money":"0"},{"id":130084,"fen":3,"officer":"","occur_date":"2014-03-14","occur_area":"石溪线1","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130086,"fen":3,"officer":"","occur_date":"2014-02-17","occur_area":"锦绣大道","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130092,"fen":0,"officer":"","occur_date":"2015-07-11","occur_area":"乌苏市北","info":"机动车违反规定停放、临时","money":"50"},{"id":130093,"fen":6,"officer":"","occur_date":"2015-04-27","occur_area":"北京路与","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130094,"fen":6,"officer":"","occur_date":"2014-06-20","occur_area":"南环路与","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130095,"fen":3,"officer":"","occur_date":"2014-05-26","occur_area":"北京路与","info":"驾驶中型以上载客载货汽车","money":"200"},{"id":130096,"fen":3,"officer":"","occur_date":"2014-03-08","occur_area":"二环高架","info":"机动车违反禁止标线指示的","money":"100"}]}
+
+    var chesuanResult=[100,95,3000,60,50,40]
+
+    var List=React.createClass({
+        getInitialState:function(){
+            return{
+                oneInputState:false,  //每条服务的选中状态
+                fuwu:0,  //every service charge
+            }
+        },
+        componentWillReceiveProps:function(a){
+            if(a.allSelectState==true){
+                this.setState({oneInputState:true})
+            }
+            if(a.oneInputStateCount==0){
+                this.setState({oneInputState:false})
+            }
+        },
+        change:function(){
+            //计算0分个数，或者12分个数
+
+            function compute(b,fen,c){
+                if(fen==0){
+                    c.props.allFunction('price0',b*1)
+                }else if(fen==12){
+                    c.props.allFunction('price12',b*1)
+                }else{
+                    c.props.allFunction('prices',b*fen)
+                }
+            }
+            if(this.state.oneInputState){
+                this.setState({oneInputState:false})
+                this.props.allFunction('oneInput',-1)  //set selected count
+                this.props.allFunction('fen',-this.props.data['fen'])  //set selected fen
+                this.props.allFunction('money',-this.props.data['money'])  //set selected fen
+                compute(-1,this.props.data['fen'],this)
+            }else{
+                this.setState({oneInputState:true})
+                this.props.allFunction('oneInput',1)  //set selected count
+                this.props.allFunction('fen',this.props.data['fen'])  //set selected fen
+                this.props.allFunction('money',this.props.data['money'])  //set selected fen
+                compute(1,this.props.data['fen'],this)
+            }
+        },
+        render:function(){
+
+            var input1=this.state.oneInputState?<input type="checkbox"
+                                                       className="inputFu"
+                                                       onChange={this.change}
+                                                       checked={this.state.oneInputState}/> :
+                                                <input type="checkbox"
+                                                     onChange={this.change}
+                                                       className="inputFu"
+
+
+                                                />
+            if(this.props.data['fen']==0){
+                var fuwu= <span>{this.props.price[2]}</span>
+            }else if(this.props.data['fen']==12){
+                var fuwu=<span>{this.props.price[1]}</span>
+            }else{
+                var fuwu=<span>{this.props.price[0]*this.props.data['fen']}</span>
+            }
+            return(
+                    <ul className="contentUl">
+                        <li>{this.props.data['occur_date'].slice(0)}</li>
+                        <li>{this.props.data['occur_area']}</li>
+                        <li><div>{this.props.data['info']}</div></li>
+                        <li>{this.props.data['fen']}</li>
+                        <li>{this.props.data['money']}</li>
+                        <li>{input1}{fuwu}</li>
+                    </ul>
+            )
+        }
+    })
+    var Content=React.createClass({
+        render:function(){
+            var rows=[]
+            this.props.data.forEach(function(data1){
+                rows.push(<List data={data1}
+                                allFunction={this.props.allFunction}
+                                allSelectState={this.props.allSelectState}
+                                oneInputStateCount={this.props.oneInputStateCount}
+                                price={this.props.price}
+                />)
+            }.bind(this))
+            return(
+                    <div className="content">
+                        <ul className="listHead">
+                        <li >违章时间</li>
+                        <li >违章地点</li>
+                        <li >违章详情</li>
+                        <li >违章分数</li>
+                        <li >违章罚款</li>
+                        <li >违章服务费</li>
+                    </ul>{rows}</div>
+            )
+        }
+    })
+    var Header=React.createClass({
+        render:function(){
+            return(
+                    <div>
+                        <span>总分：{this.props.total_score}</span>
+                        <span>总条：{this.props.count}</span>
+                    </div>
+            )
+        }
+    })
+    var Footer=React.createClass({
+        getInitialState:function(){
+            return{
+                allselect:false
+            }
+        },
+        render:function(){
+            var input=this.props.allSelectState?<li className="list-group-item"><span>全选</span>
+                <input type="checkbox"
+                       checked='true'
+                       onChange={this.props.allSelectFunction}
+                /> </li>:
+                   <li className="list-group-item"><span>全选</span> <input
+                           onChange={this.props.allSelectFunction}
+                           type="checkbox" /></li>
+            return(
+                    <ul className="list-group foot">
+                        {input}
+                        <li className="list-group-item"><span>已选{this.props.oneInputStateCount}项</span></li>
+                        <li className="list-group-item"><span>总扣{this.props.allFen}分</span></li>
+                        <li className="list-group-item"> <div>总罚款</div>{this.props.allMoney}元</li>
+                        <li className="list-group-item"><span className='allfuwu'><div>总服务费</div>{this.props.allfu}元</span></li>
+                        <li className="list-group-item"><span><div>合计</div>{this.props.allfu+this.props.allMoney}  元</span></li>
+                    </ul>
+            )
+        }
+    })
+
+    var All=React.createClass({
+        getInitialState: function () {
+            return{
+                oneInputStateCount:0,// selected count
+                sellectedService:0,   //被选中的所有服务费
+                allFen:0,//all pints
+                allMoney:0,//all fine mongey
+                allSelectState:false,  //全选状态
+                priceCount0:0,   //0分个数
+                priceCounts:0,//其他总分数
+                priceCount12:0,  //12分个数
+            }
+        },
+        //m每条按钮函数
+        allFunction:function(a,b){
+          switch (a){
+              case 'oneInput':this.setState({oneInputStateCount:this.state.oneInputStateCount+b})
+                  if(this.props.data.count==this.state.oneInputStateCount+b){
+                      this.setState({allSelectState:true})
+                  }else{
+                      this.setState({allSelectState:false})
+                  }
+              ;break
+              case 'selectedService':this.setState({sellectedService:this.state.sellectedService+b});break
+              case 'fen':this.setState({allFen:this.state.allFen+b})
+              ;break
+              case 'money':this.setState({allMoney:this.state.allMoney+parseInt(b)});break
+              case 'price0':this.setState({priceCount0:this.state.priceCount0+parseInt(b)});break
+              case 'price12':this.setState({priceCount12:this.state.priceCount12+parseInt(b)});break
+              case 'prices':this.setState({priceCounts:this.state.priceCounts+parseInt(b)});break
+          }
+        },
+        //全选按钮函数
+        allSelectFunction:function(){
+            if(this.state.allSelectState){
+                this.setState({allSelectState:false,oneInputStateCount:0,allFen:0,allMoney:0})
+                this.setState({priceCount0:0})
+                this.setState({priceCount12:0})
+                this.setState({priceCounts:0})
+            }else{
+                this.setState({allSelectState:true,oneInputStateCount:this.props.data.count,allFen:this.props.data.total_score,
+                    allMoney:this.props.data.total_money
+                    })
+                var price0=0,price12=0,prices=0
+                for(var i=0;i<this.props.data.historys.length;i++){
+                    if(this.props.data.historys[i].fen==0){
+                        price0+=1
+                    }else if(this.props.data.historys[i].fen==12){
+                        price12+=1
+                    }else{
+                        prices+=this.props.data.historys[i].fen
+                    }
+                }
+                this.setState({priceCount0:price0})
+                this.setState({priceCount12:price12})
+                this.setState({priceCounts:prices})
+
+
+            }
+        },
+        render:function(){
+
+            //计算各种分的价格
+            var price=[]
+            if(this.state.priceCount0<2){
+                price[2]=chesuanResult[3]
+            }else if(this.state.priceCount0<10){
+                price[2]=chesuanResult[4]
+            }else{
+                price[2]=chesuanResult[5]
+            }
+            if(this.state.priceCounts>17){
+                price[0]=chesuanResult[1]
+            }else{
+                price[0]=chesuanResult[0]
+            }
+            price[1]=chesuanResult[2]
+            var allfu=this.state.priceCounts*price[0]+this.state.priceCount0*price[2]+this.state.priceCount12*price[1]
+            return(
+                    <div className="divWrap">
+                        <Header total_score={this.props.data.total_score} count={this.props.data.count}/>
+                        <Content
+                                allData={this.props.data}
+                                data={this.props.data.historys}
+                                allFunction={this.allFunction}
+                                allSelectState={this.state.allSelectState}
+                                oneInputStateCount={this.state.oneInputStateCount}
+                                price={price}
+                        />
+                        <Footer
+                                oneInputStateCount={this.state.oneInputStateCount}
+                                allFen={this.state.allFen}
+                                allMoney={this.state.allMoney}
+                                allSelectState={this.state.allSelectState}
+                                allSelectFunction={this.allSelectFunction}
+                                allfu={allfu}
+
+
+                        />
+                    </div>
+            )
+        }
+    })
+
+    var Div1=React.createClass({
+//    componentDidMount:function(){
+//
+//    },
+//        click:function (){
+//            this.setState({})
+//        },
+        render:function(){
+            console.log(this.props.div)
+            return (
+                    <div onClick={this.props.click}>{this.props.div}</div>
+            )
+        }
+    })
+    var Div2=React.createClass({
+
+        render:function(){
+            console.log('div2')
+
+            return (
+                    <div></div>
+            )
+        }
+    })
+    var All=React.createClass({
+        getInitialState:function(){
+            return{
+                div:'div1'
+            }
+        },
+        click:function (){
+            this.setState({div:'divdiv1'})
+        },
+        render:function(){
+            console.log('all')
+            return (
+                    <div>
+                        <Div1 div={this.state.div} click={this.click}/>
+                        <Div2/>
+                    </div>
+            )
+        }
+    })
+
+    React.render(
+            /* <All data={data} chesuanResult={chesuanResult}/>,*/
+
+            <All/>,
+            document.getElementById('container')
+    )
+
+
+
+
+</script>
+<script>
+
+</script>
+
+<body/>
+<html/>
